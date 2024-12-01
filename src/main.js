@@ -6,7 +6,7 @@ let wpm;
 
 async function getWords() {
   const wordListFn = await fetch(
-    "https://random-word-api.vercel.app/api?words=6",
+    "https://random-word-api.vercel.app/api?words=5",
   )
     .then((res) => res.json())
     .then((data) => data)

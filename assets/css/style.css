@@ -1,3 +1,4 @@
+@import url("fonts.css");
 #typer-text {
   font-size: 2rem;
 }
@@ -11,6 +12,7 @@ body {
   flex-direction: column;
   width: 100vw;
   align-items: center;
+  font-family: "roboto";
 }
 
 #center-div {
