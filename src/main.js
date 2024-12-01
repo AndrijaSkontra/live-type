@@ -27,7 +27,7 @@ let typerTextValue = typerText.innerText;
 let startedTime;
 
 typingText.addEventListener("focus", (event) => {
-  event.target.style.background = "pink";
+  event.target.style.background = "hsl(360 100% 95%)";
   startedTime = new Date().getTime();
 });
 
@@ -42,7 +42,7 @@ typingText.addEventListener("input", (e) => {
       5 /
       ((new Date().getTime() - startedTime) / 60000);
     wpmResult.innerText = Math.floor(wpm) + " WPM";
-    typingText.style.background = "#d4ffeb";
+    typingText.style.background = "hsl(154 100% 97%)";
   }
 });
 
