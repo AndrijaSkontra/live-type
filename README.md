@@ -39,7 +39,11 @@ frontend-project/
 │
 ├── package.json              # To install deps use npm ci
 │
-└── package-lock.json              
+├── package-lock.json         
+│
+├── babel.config.js           # Babel config file
+│
+└── jest.config.js            # Jest config file(tests)
 ```
 ## TODOS
 
