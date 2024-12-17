@@ -1,3 +1,4 @@
+import { TypeText } from "./type-text.js";
 const typerText = document.getElementById("typer-text");
 const typingText = document.getElementById("typing-text");
 const restartButton = document.getElementById("restart-button");
@@ -21,7 +22,7 @@ async function getWords() {
 
 const typerTextFromDB = await getWords();
 
-console.log(typerTextFromDB.trim());
+console.log(typerTextFromDB);
 typerText.innerText = typerTextFromDB;
 let typerTextValue = typerText.innerText;
 let startedTime;
@@ -50,4 +51,13 @@ restartButton.addEventListener("click", async (e) => {
   typingText.value = "";
   wpmResult.innerText = "";
   typerText.innerText = await getWords();
+});
+
+const typeText = new TypeText(await getWords());
+
+//  TODO:
+//  todo stavi svako slovo na ekran, ovaj dio probati bez react-a
+//  onda bi se mogli prebaciti na react...
+typeText.typeLetters.forEach((elem) => {
+  console.log(elem.getString());
 });

@@ -1,6 +1,14 @@
 # Live Type
 
-### **Project Structure**
+## Run
+
+1. `git clone https://github.com/AndrijaSkontra/live-type` 
+2. `cd live-type`
+3. `npm ci`
+4. `npm run test`
+5. `npm run dev`
+
+## **Project Structure**
 
 ```
 frontend-project/
