@@ -15,16 +15,49 @@ body {
   width: 100vw;
   align-items: center;
   font-family: "roboto";
+
+  background-color: hsla(240, 45%, 42%, 1);
+  background-image: radial-gradient(
+      at 40% 20%,
+      hsla(247, 77%, 11%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 80% 0%, hsla(239, 41%, 24%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(231, 24%, 19%, 1) 0px, transparent 50%),
+    radial-gradient(at 81% 54%, hsla(247, 32%, 18%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(247, 50%, 22%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(240, 53%, 15%, 1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(247, 56%, 18%, 1) 0px, transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 #letters-box {
-  background-color: hsl(220 80% 90%);
+  background-color: hsl(224 33% 32%);
   padding: 15px;
   border-radius: 20px;
   box-shadow:
     0 10px 15px -3px rgb(0 0 0 / 0.1),
     0 4px 6px -4px rgb(0 0 0 / 0.1);
   margin-top: 4rem;
+}
+
+/* empty style when whitespace is hit, don't change */
+#letter-whitespace-hit {
+}
+
+#letter-whitespace-miss {
+  background-color: red;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.current-letter-hit {
+  border-right: 2px solid green;
+}
+
+.current-letter-miss {
+  border-left: 2px solid green;
 }
 
 #letter-hit {
@@ -46,7 +79,7 @@ body {
 }
 
 button {
-  background-color: #ffffff;
+  background-color: hsl(167 33% 32%);
   border: 1px solid #222222;
   border-radius: 8px;
   box-sizing: border-box;
@@ -64,46 +97,10 @@ button {
   text-decoration: none;
   touch-action: manipulation;
   transition:
-    box-shadow 0.2s,
     -ms-transform 0.1s,
     -webkit-transform 0.1s,
     transform 0.1s;
   user-select: none;
   -webkit-user-select: none;
   width: auto;
-}
-
-button:focus-visible {
-  box-shadow:
-    #222222 0 0 0 2px,
-    rgba(255, 255, 255, 0.8) 0 0 0 4px;
-  transition: box-shadow 0.2s;
-}
-
-button:active {
-  background-color: #f7f7f7;
-  border-color: #000000;
-  transform: scale(0.96);
-}
-
-button:disabled {
-  border-color: #dddddd;
-  color: #dddddd;
-  cursor: not-allowed;
-  opacity: 1;
-}
-
-input {
-  border: none;
-  border-bottom: 1px solid #ccc;
-  padding: 8px 0;
-  font-size: 16px;
-  width: 100%;
-}
-
-input:focus + label,
-input:not(:placeholder-shown) + label {
-  top: -20px;
-  font-size: 12px;
-  color: #000;
 }

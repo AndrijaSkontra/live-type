@@ -9,16 +9,13 @@
     <script async type="module" src="src/js/main.js"></script>
   </head>
   <body>
-    <div id="center-div">
-      <p id="typer-text"></p>
-      <input id="typing-text" type="text" />
-      <p id="wpm-result"></p>
-      <div style="display: flex; width: 100%; justify-content: flex-end">
-        <button id="restart-button">restart</button>
-      </div>
-    </div>
+    <p style="color: gray">Press Esc to reset</p>
     <div id="letters-box">
+      <p id="wpm-result">0 wpm</p>
       <div id="letters"></div>
+      <div style="display: flex; width: 100%; justify-content: flex-end">
+        <button id="restart-button">Restart</button>
+      </div>
     </div>
   </body>
 </html>

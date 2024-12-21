@@ -12,16 +12,26 @@ export class TypeText {
     this.currentLetter = this.typeLetters[this.letterPointer];
     this.startTime;
     this.endTime;
+    this.timerStarted;
+    this.typingStarted = false;
+  }
+
+  borderAroundCurrentLetter() {
+    this.currentLetter.removeBorder();
+    this.currentLetter = this.typeLetters[this.letterPointer];
+  }
+
+  setTimerStarted(x) {
+    // SUS
+    this.timerStarted = x;
   }
 
   startTimer() {
-    const time = (this.startTime = new Date().getTime());
-    return time;
+    this.startTime = new Date().getTime();
   }
 
   endTimer() {
-    const time = (this.endTime = new Date().getTime());
-    return time;
+    this.endTime = new Date().getTime();
   }
 
   getCurrentLetter() {
@@ -34,5 +44,13 @@ export class TypeText {
 
   isCompleted() {
     return this.letterPointer === this.typeLetters.length;
+  }
+
+  paintLetters() {
+    const parentElement = document.getElementById("letters");
+    parentElement.innerHTML = "";
+    this.typeLetters.forEach((elem) => {
+      elem.paintToDOM();
+    });
   }
 }

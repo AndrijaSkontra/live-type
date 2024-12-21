@@ -21,12 +21,37 @@ export class TypeLetter {
     parentElement.appendChild(this.letterElement);
   }
 
-  changeID() {
-    if (this.status === LetterStatus.HIT) {
-      this.letterElement.id = "letter-hit";
-    }
-    if (this.status === LetterStatus.MISS) {
-      this.letterElement.id = "letter-miss";
+  removeBorder() {
+    this.letterElement.classList.remove("current-letter-hit");
+    this.letterElement.classList.remove("current-letter-miss");
+  }
+
+  /**
+   * Apply css based on hit or miss or whitespace
+   */
+  changeColor() {
+    if (this.value !== " ") {
+      if (this.status === LetterStatus.HIT) {
+        this.letterElement.classList.add("current-letter-hit");
+        this.letterElement.classList.remove("current-letter-miss");
+        this.letterElement.id = "letter-hit";
+      }
+      if (this.status === LetterStatus.MISS) {
+        this.letterElement.classList.add("current-letter-miss");
+        this.letterElement.classList.remove("current-letter-hit");
+        this.letterElement.id = "letter-miss";
+      }
+    } else {
+      if (this.status === LetterStatus.HIT) {
+        this.letterElement.classList.add("current-letter-hit");
+        this.letterElement.classList.remove("current-letter-miss");
+        this.letterElement.id = "letter-whitespace-hit";
+      }
+      if (this.status === LetterStatus.MISS) {
+        this.letterElement.classList.add("current-letter-miss");
+        this.letterElement.classList.remove("current-letter-hit");
+        this.letterElement.id = "letter-whitespace-miss";
+      }
     }
   }
 }
