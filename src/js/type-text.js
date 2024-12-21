@@ -3,7 +3,6 @@ import { TypeLetter } from "./letter.js";
 
 export class TypeText {
   constructor(text) {
-    console.log("making new type text");
     this.text = text;
     this.status = TextStatus.WAITING;
     this.typeLetters = [];
@@ -16,13 +15,20 @@ export class TypeText {
     this.typingStarted = false;
   }
 
+  paintLetters() {
+    const parentElement = document.getElementById("letters");
+    parentElement.innerHTML = "";
+    this.typeLetters.forEach((elem) => {
+      elem.paintToDOM();
+    });
+  }
+
   borderAroundCurrentLetter() {
     this.currentLetter.removeBorder();
     this.currentLetter = this.typeLetters[this.letterPointer];
   }
 
   setTimerStarted(x) {
-    // SUS
     this.timerStarted = x;
   }
 
@@ -44,13 +50,5 @@ export class TypeText {
 
   isCompleted() {
     return this.letterPointer === this.typeLetters.length;
-  }
-
-  paintLetters() {
-    const parentElement = document.getElementById("letters");
-    parentElement.innerHTML = "";
-    this.typeLetters.forEach((elem) => {
-      elem.paintToDOM();
-    });
   }
 }

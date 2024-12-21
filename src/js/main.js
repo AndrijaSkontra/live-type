@@ -1,40 +1,17 @@
+import { LOCALSTORAGE_USERNAME } from "./constants.js";
 import { LetterStatus } from "./enums.js";
 import { TypeText } from "./type-text.js";
-const restartButton = document.getElementById("restart-button");
-const wpmResult = document.getElementById("wpm-result");
-
-async function getWords() {
-  const wordListFn = await fetch(
-    "https://random-word-api.vercel.app/api?words=5",
-  )
-    .then((res) => res.json())
-    .then((data) => data)
-    .catch(() => console.error("err, can't fetch data"));
-
-  const typerTextFromDB = wordListFn.reduce(
-    (accumulator, word) => accumulator + " " + word,
-    "",
-  );
-  return typerTextFromDB.trim();
-}
-
-restartButton.addEventListener("click", async (e) => {
-  restartGame();
-});
-
-async function restartGame() {
-  typeText = new TypeText(await getWords());
-  typeText.paintLetters();
-  restartButton.blur();
-}
 
 let typeText = new TypeText(await getWords());
 typeText.paintLetters();
 
-const letterBox = document.getElementById("letters-box");
+const restartButton = document.getElementById("restart-button");
+const wpmResult = document.getElementById("wpm-result");
 
-letterBox.addEventListener("mouseover", () => {
-  console.log("mouseover");
+console.log("username:", localStorage.getItem(LOCALSTORAGE_USERNAME));
+
+restartButton.addEventListener("click", async (e) => {
+  restartGame();
 });
 
 document.addEventListener("keydown", (event) => {
@@ -44,8 +21,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keypress", (e) => {
-  console.log("e: ", e.key);
-
   if (!typeText.typingStarted) {
     typeText.typingStarted = true;
     typeText.startTimer();
@@ -64,19 +39,32 @@ document.addEventListener("keypress", (e) => {
     currentLetter.changeColor();
   }
   if (typeText.isCompleted()) {
+    //  TODO: fetch post guest and wpm
     typeText.endTimer();
     const timeSpend = typeText.endTime - typeText.startTime;
-    console.log("timeSpend: ", timeSpend);
-    //  FIX: here we calculated wpm maybe we can put this into type text class
-    let wpm = typeText.typeLetters.length / 5 / (timeSpend / 60000);
+
+    const wpm = typeText.typeLetters.length / 5 / (timeSpend / 60000);
     wpmResult.innerText = Math.floor(wpm) + " WPM";
   }
 });
 
-letterBox.addEventListener("mouseleave", () => {
-  console.log("leaving");
-});
+async function restartGame() {
+  typeText = new TypeText(await getWords());
+  typeText.paintLetters();
+  restartButton.blur();
+}
 
-letterBox.addEventListener("click", () => {
-  console.log("click click");
-});
+async function getWords() {
+  const wordListFn = await fetch(
+    "https://random-word-api.vercel.app/api?words=5",
+  )
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch(() => console.error("err, can't fetch data"));
+
+  const typerTextFromDB = wordListFn.reduce(
+    (accumulator, word) => accumulator + " " + word,
+    "",
+  );
+  return typerTextFromDB.trim();
+}
