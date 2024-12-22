@@ -1,5 +1,6 @@
 import { LOCALSTORAGE_USERNAME } from "./constants.js";
 import { LetterStatus } from "./enums.js";
+import { BACKEND_URL } from "./secret.js";
 import { TypeText } from "./type-text.js";
 
 let typeText = new TypeText(await getWords());
@@ -47,7 +48,7 @@ document.addEventListener("keypress", (e) => {
     const wpmFinal = Math.floor(wpm);
     wpmResult.innerText = wpmFinal + " WPM";
 
-    fetch(`https://live-type-api.onrender.com/user`, {
+    fetch(`${BACKEND_URL}/user`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
