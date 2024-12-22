@@ -44,7 +44,19 @@ document.addEventListener("keypress", (e) => {
     const timeSpend = typeText.endTime - typeText.startTime;
 
     const wpm = typeText.typeLetters.length / 5 / (timeSpend / 60000);
-    wpmResult.innerText = Math.floor(wpm) + " WPM";
+    const wpmFinal = Math.floor(wpm);
+    wpmResult.innerText = wpmFinal + " WPM";
+
+    fetch(`https://live-type-api.onrender.com/user`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        username: localStorage.getItem(LOCALSTORAGE_USERNAME),
+        wpm: wpmFinal,
+      }),
+    }).catch((e) => console.log(e.message));
   }
 });
 
