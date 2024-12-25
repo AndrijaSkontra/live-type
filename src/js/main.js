@@ -3,6 +3,8 @@ import { LetterStatus } from "./enums.js";
 import { TypeText } from "./type-text.js";
 import { BACKEND_URL } from "./secret.js";
 
+console.log("app starting");
+
 let typeText = new TypeText(await getWords());
 typeText.paintLetters();
 
