@@ -1,6 +1,6 @@
 import { LOCALSTORAGE_USERNAME } from "./constants.js";
 import { LetterStatus } from "./enums.js";
-import { BACKEND_URL } from "./secret.js";
+import { BACKEND_URL } from "./constants.js";
 import { TypeText } from "./type-text.js";
 
 let typeText = new TypeText(await getWords());
