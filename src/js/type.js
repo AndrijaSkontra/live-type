@@ -1,6 +1,6 @@
 import { LOCALSTORAGE_USERNAME } from "./constants.js";
-import { LetterStatus } from "./enums.js";
 import { TypeText } from "./type-text.js";
+import { LetterStatus } from "./enums.js";
 import { BACKEND_URL } from "./secret.js";
 
 console.log("app starting");

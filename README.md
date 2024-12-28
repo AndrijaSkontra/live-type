@@ -8,7 +8,7 @@
 4. `npm run test`
 5. `npm run dev`
 
-## **Project Structure**
+## **Project Structure** ~deprecated~
 
 ```
 frontend-project/
@@ -23,7 +23,7 @@ frontend-project/
 │   └── style.css             # Main stylesheet
 │
 ├── js/                       
-│   ├── main.js               # Run all javascript
+│   ├── index.js              # Run all javascript
 │   ├── utils/                # Utility functions
 │   │   └── helpers.js        
 │   │
