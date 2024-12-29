@@ -50,7 +50,7 @@ document.addEventListener("keypress", (e) => {
     const wpmFinal = Math.floor(wpm);
     wpmResult.innerText = wpmFinal + " WPM";
 
-    fetch(`${BACKEND_URL}/user`, {
+    fetch(`${BACKEND_URL}/game-scores`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
