@@ -15,9 +15,9 @@ console.log(gameScores);
 gameScores.forEach((gameScore) => {
   const tableRow = document.createElement("tr");
   const rowWpm = document.createElement("td");
-  rowWpm.innerText = gameScore.wpm;
+  rowWpm.innerText = gameScore.maxWpm;
   const rowUsername = document.createElement("td");
-  rowUsername.innerText = gameScore.username;
+  rowUsername.innerText = gameScore._id;
   tableRow.appendChild(rowUsername);
   tableRow.appendChild(rowWpm);
   gameScoreTable.appendChild(tableRow);
