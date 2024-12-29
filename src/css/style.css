@@ -9,6 +9,10 @@
   width: 99%;
 }
 
+#game-score-table {
+  color: white;
+}
+
 body {
   display: flex;
   flex-direction: column;
