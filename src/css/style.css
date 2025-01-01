@@ -108,3 +108,11 @@ button {
   -webkit-user-select: none;
   width: auto;
 }
+
+#index-body > * {
+  margin-top: 1rem;
+}
+
+a {
+  color: green;
+}

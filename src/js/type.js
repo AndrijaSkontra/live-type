@@ -3,15 +3,11 @@ import { TypeText } from "./type-text.js";
 import { LetterStatus } from "./enums.js";
 import { BACKEND_URL } from "./secret.js";
 
-console.log("app starting");
-
 let typeText = new TypeText(await getWords());
 typeText.paintLetters();
 
 const restartButton = document.getElementById("restart-button");
 const wpmResult = document.getElementById("wpm-result");
-
-console.log("username:", localStorage.getItem(LOCALSTORAGE_USERNAME));
 
 restartButton.addEventListener("click", async (e) => {
   restartGame();
