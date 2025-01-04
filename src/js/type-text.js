@@ -18,7 +18,6 @@ export class TypeText {
   paintLetters(parentElementId = "letters") {
     const parentElement = document.getElementById(parentElementId);
     parentElement.innerHTML = "";
-    console.log("type letters: ", this.typeLetters);
     this.typeLetters.forEach((elem) => {
       elem.paintToDOM(parentElementId);
     });
@@ -51,5 +50,10 @@ export class TypeText {
 
   isCompleted() {
     return this.letterPointer === this.typeLetters.length;
+  }
+
+  updateOpponentCaret(data) {
+    const opponentLetter = this.typeLetters[data.position];
+    opponentLetter.makePink();
   }
 }

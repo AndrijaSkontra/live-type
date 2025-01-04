@@ -9,6 +9,10 @@
   font-size: 2rem;
 }
 
+.opponent {
+  color: pink;
+}
+
 #typing-text {
   width: 99%;
 }

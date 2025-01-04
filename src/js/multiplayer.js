@@ -1,16 +1,19 @@
 import { BACKEND_URL } from "./secret.js";
+import { LOCALSTORAGE_USERNAME } from "./constants.js";
 import { LetterStatus } from "./enums.js";
 import { TypeText } from "./type-text.js";
 
+const usernameDiv = document.getElementById("username-div");
 const wpmResult = document.getElementById("wpm-result");
 const gameDiv = document.getElementById("letters-box");
 
 localStorage.debug = "socket.io-client:socket";
 
-const rndNum = Math.random();
-console.log("generated: ", rndNum);
-
-const socket = io(BACKEND_URL);
+const socket = io(BACKEND_URL, {
+  query: {
+    username: localStorage.getItem(LOCALSTORAGE_USERNAME),
+  },
+});
 socket.on("connect", () => {
   console.log("connected: ", socket.id);
   // volatile opcija je super jer u slucaju da nema connection-a na
@@ -20,11 +23,12 @@ socket.on("connect", () => {
   // ovaj emit slati ce wpm position clienta
 });
 
-socket.on("letterPosition", (data) => {
-  console.log(data);
-});
-
 socket.on("full room", (data) => {
+  data.usernames.forEach((username) => {
+    const usernameP = document.createElement("p");
+    usernameP.innerText = username;
+    usernameDiv.appendChild(usernameP);
+  });
   const countdown = document.createElement("p");
   countdown.id = "countdown";
   gameDiv.appendChild(countdown);
@@ -61,10 +65,10 @@ function startTheMultiplayerGame(words) {
       currentLetter.status = LetterStatus.HIT;
       typeText.nextLetter();
       currentLetter.changeColor();
-      socket.volatile.emit(
-        "wpmPosition",
-        "username: " + socket.id + " | letter pos: " + typeText.letterPointer,
-      );
+      socket.volatile.emit("wpmPosition", {
+        username: localStorage.getItem(LOCALSTORAGE_USERNAME),
+        position: typeText.letterPointer,
+      });
     } else {
       currentLetter.status = LetterStatus.MISS;
       currentLetter.changeColor();
@@ -77,5 +81,10 @@ function startTheMultiplayerGame(words) {
       const wpmFinal = Math.floor(wpm);
       wpmResult.innerText = wpmFinal + " WPM";
     }
+  });
+
+  socket.on("letterPosition", (data) => {
+    typeText.updateOpponentCaret(data);
+    console.log(data);
   });
 }

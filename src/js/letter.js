@@ -35,8 +35,7 @@ export class TypeLetter {
         this.letterElement.classList.add("current-letter-hit");
         this.letterElement.classList.remove("current-letter-miss");
         this.letterElement.id = "letter-hit";
-      }
-      if (this.status === LetterStatus.MISS) {
+      } else if (this.status === LetterStatus.MISS) {
         this.letterElement.classList.add("current-letter-miss");
         this.letterElement.classList.remove("current-letter-hit");
         this.letterElement.id = "letter-miss";
@@ -53,5 +52,13 @@ export class TypeLetter {
         this.letterElement.id = "letter-whitespace-miss";
       }
     }
+  }
+
+  makePink() {
+    this.letterElement.classList.add("opponent");
+  }
+
+  removePink() {
+    this.letterElement.classList.remove("opponent");
   }
 }
