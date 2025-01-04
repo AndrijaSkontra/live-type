@@ -11,13 +11,13 @@ export class TypeLetter {
     return `Letter: ${this.value} - Status: ${this.status}`;
   }
 
-  paintToDOM() {
+  paintToDOM(parentElementId = "letters") {
     if (this.value === " ") {
       this.letterElement.innerText = "\u00A0";
     } else {
       this.letterElement.innerText = this.value;
     }
-    const parentElement = document.getElementById("letters");
+    const parentElement = document.getElementById(parentElementId);
     parentElement.appendChild(this.letterElement);
   }
 

@@ -15,11 +15,12 @@ export class TypeText {
     this.typingStarted = false;
   }
 
-  paintLetters() {
-    const parentElement = document.getElementById("letters");
+  paintLetters(parentElementId = "letters") {
+    const parentElement = document.getElementById(parentElementId);
     parentElement.innerHTML = "";
+    console.log("type letters: ", this.typeLetters);
     this.typeLetters.forEach((elem) => {
-      elem.paintToDOM();
+      elem.paintToDOM(parentElementId);
     });
   }
 
